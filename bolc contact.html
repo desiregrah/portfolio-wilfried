@@ -1,0 +1,163 @@
+<style>
+  /* Le conteneur principal */
+  .contact-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  /* --- Partie Gauche : Infos --- */
+  .contact-info {
+    background: #1A1B26;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #2A2B36;
+  }
+
+  .contact-info h3 {
+    color: #E0E0E0;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .contact-info p {
+    color: #A0A0A0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .info-icon {
+    font-size: 1.5rem;
+    color: #00E5FF;
+    margin-right: 15px;
+    background: rgba(0, 229, 255, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+  }
+
+  .info-text strong {
+    display: block;
+    color: #E0E0E0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .info-text span {
+    color: #00E5FF;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* --- Partie Droite : Formulaire --- */
+  .contact-form {
+    background: #1A1B26;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #2A2B36;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    width: 100%;
+    background: #121212;
+    border: 1px solid #2A2B36;
+    color: #E0E0E0;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Pour éviter que ça dépasse */
+  }
+
+  /* Effet Néon quand on clique dans un champ */
+  .form-control:focus {
+    outline: none;
+    border-color: #00E5FF;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+  }
+
+  textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    background: transparent;
+    color: #00E5FF;
+    border: 2px solid #00E5FF;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .submit-btn:hover {
+    background: #00E5FF;
+    color: #121212;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+  }
+</style>
+
+<div class="contact-section">
+
+  <!-- Colonne de gauche : Informations -->
+  <div class="contact-info">
+    <h3>Discutons de votre projet</h3>
+    <p>Besoin d'un site web performant, d'une refonte réseau ou d'une création graphique ? N'hésitez pas à me contacter.</p>
+    
+    <div class="info-item">
+      <div class="info-icon">📱</div>
+      <div class="info-text">
+        <strong>WhatsApp / Mobile</strong>
+        <span>+225 0769792332</span>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div class="info-text">
+        <strong>Localisation</strong>
+        <span>Abidjan, Côte d'Ivoire</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Colonne de droite : Formulaire HTML -->
+  <div class="contact-form">
+    <!-- Remplacer "VOTRE_CODE" par le code fourni par Formspree -->
+    <form action="https://formspree.io/f/VOTRE_CODE" method="POST">
+      
+      <div class="form-group">
+        <input type="text" name="name" class="form-control" placeholder="Votre Nom complet" required>
+      </div>
+
+      <div class="form-group">
+        <input type="email" name="email" class="form-control" placeholder="Votre Adresse Email" required>
+      </div>
+
+      <div class="form-group">
+        <textarea name="message" class="form-control" placeholder="Parlez-moi de votre besoin (Site web, maintenance, design...)" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Envoyer le message</button>
+
+    </form>
+  </div>
+
+</div>

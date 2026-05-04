@@ -1,0 +1,166 @@
+<style>
+  /* La grille pour afficher tes projets (3 par ligne sur grand écran) */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+  }
+
+  /* Le conteneur de chaque projet */
+  .portfolio-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 1px solid #2A2B36;
+  }
+
+  /* L'image de fond (capture d'écran de ton site) */
+  .portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; 
+    transition: transform 0.6s ease;
+    display: block;
+  }
+
+  /* Le calque sombre avec effet Néon qui apparaît au survol */
+  .portfolio-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(26, 27, 38, 0.9); /* Fond sombre transparent */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; 
+    transition: all 0.4s ease;
+    border: 2px solid transparent;
+    border-radius: 12px;
+  }
+
+  /* Animation au survol */
+  .portfolio-item:hover img {
+    transform: scale(1.1); /* L'image zoome légèrement */
+  }
+  .portfolio-item:hover .portfolio-overlay {
+    opacity: 1; /* Le calque apparaît */
+    border-color: #00E5FF; /* Bordure Cyan */
+  }
+
+  /* Typographie des textes du projet */
+  .portfolio-title {
+    color: #FFFFFF;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+    text-align: center;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+
+  .portfolio-category {
+    color: #A0A0A0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 20px 0;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.1s;
+  }
+
+  /* Le bouton "Voir le site" */
+  .portfolio-link {
+    color: #00E5FF;
+    border: 1px solid #00E5FF;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transform: translateY(20px);
+    transition: all 0.4s ease 0.2s;
+  }
+
+  .portfolio-link:hover {
+    background: #00E5FF;
+    color: #121212;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+  }
+
+  /* Révélation des éléments en cascade */
+  .portfolio-item:hover .portfolio-title,
+  .portfolio-item:hover .portfolio-category,
+  .portfolio-item:hover .portfolio-link {
+    transform: translateY(0);
+  }
+</style>
+
+<!-- Le contenu de ta Galerie Visuelle -->
+<div class="portfolio-grid">
+
+  <!-- Projet 1 : Cour de Cassation -->
+  <div class="portfolio-item">
+    <!-- Remplacer le lien de l'image par une vraie capture d'écran du site -->
+    <img src="http://portfolio-grah.local/wp-content/uploads/2026/05/Macbook-Air-courdecassation.ci_-scaled.webp" alt="Cour de Cassation CI">
+    <div class="portfolio-overlay">
+      <h3 class="portfolio-title">Cour de Cassation CI</h3>
+      <p class="portfolio-category">Site Institutionnel</p>
+      <a href="https://courdecassation.ci/" target="_blank" class="portfolio-link">Voir le site</a>
+    </div>
+  </div>
+
+  <!-- Projet 2 : Le Crédit Ivoirien -->
+  <div class="portfolio-item">
+    <img src="http://portfolio-grah.local/wp-content/uploads/2026/05/Macbook-Air-lecredit-ivoirien.com_-scaled.webp" alt="Le Crédit Ivoirien">
+    <div class="portfolio-overlay">
+      <h3 class="portfolio-title">Le Crédit Ivoirien</h3>
+      <p class="portfolio-category">Finance & Web</p>
+      <a href="https://lecredit-ivoirien.com" target="_blank" class="portfolio-link">Voir le site</a>
+    </div>
+  </div>
+
+  <!-- Projet 3 : Masterclays -->
+  <div class="portfolio-item">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Masterclays">
+    <div class="portfolio-overlay">
+      <h3 class="portfolio-title">Masterclays</h3>
+      <p class="portfolio-category">Création Web</p>
+      <a href="https://masterclays.com" target="_blank" class="portfolio-link">Voir le site</a>
+    </div>
+  </div>
+
+  <!-- Projet 4 : ARDPCCI -->
+  <div class="portfolio-item">
+    <img src="http://portfolio-grah.local/wp-content/uploads/2026/05/Macbook-Air-ardpcci.org_-scaled.webp" alt="ARDPCCI">
+    <div class="portfolio-overlay">
+      <h3 class="portfolio-title">ARDPCCI</h3>
+      <p class="portfolio-category">Portail ONG</p>
+      <a href="https://ardpcci.org" target="_blank" class="portfolio-link">Voir le site</a>
+    </div>
+  </div>
+
+  <!-- Projet 5 : Velch Digital -->
+  <div class="portfolio-item">
+    <img src="http://portfolio-grah.local/wp-content/uploads/2026/05/comment-creer-page-maintenance-wordpress-coming-soon-2.png" alt="Velch Digital">
+    <div class="portfolio-overlay">
+      <h3 class="portfolio-title">Velch Digital</h3>
+      <p class="portfolio-category">Agence Tech</p>
+      <a href="https://velchdigital.com" target="_blank" class="portfolio-link">Voir le site</a>
+    </div>
+  </div>
+
+  <!-- Projet 6 : Affiches & Design -->
+  <div class="portfolio-item">
+    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Créations Graphiques">
+    <div class="portfolio-overlay">
+      <h3 class="portfolio-title">Affiches Publicitaires</h3>
+      <p class="portfolio-category">Design Visuel (Vako)</p>
+      <a href="#" class="portfolio-link">Voir les maquettes</a>
+    </div>
+  </div>
+
+</div>

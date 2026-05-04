@@ -1,0 +1,325 @@
+<style>
+  /* Conteneur global avec fond sombre profond */
+  .sh-container {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 5%;
+    overflow: hidden; /* Empêche les lumières de déborder */
+    background-color: #0d0e15; /* Noir bleuté très profond */
+  }
+
+  /* --- LES ORBES LUMINEUX ANIMÉS (Le fond dynamique) --- */
+  .sh-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* Flou extrême pour faire une tache de lumière */
+    opacity: 0.6;
+    animation: floatOrbs 10s infinite alternate ease-in-out;
+    z-index: 0;
+  }
+
+  .sh-orb-1 {
+    width: 400px; height: 400px;
+    background: #00E5FF; /* Cyan */
+    top: -100px; left: -100px;
+  }
+
+  .sh-orb-2 {
+    width: 350px; height: 350px;
+    background: #7C4DFF; /* Violet */
+    bottom: -50px; right: 10%;
+    animation-delay: -3s;
+  }
+
+  .sh-orb-3 {
+    width: 250px; height: 250px;
+    background: #FF2A85; /* Magenta pour nuancer */
+    top: 30%; left: 40%;
+    animation-delay: -6s;
+    opacity: 0.4;
+  }
+
+  /* --- LA CARTE EN VERRE (Glassmorphism) --- */
+  .sh-glass-panel {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.03); /* Fond transparent très léger */
+    backdrop-filter: blur(16px); /* Effet verre dépoli */
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 60px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  /* --- TEXTES ET CONTENUS --- */
+  .sh-text-side {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .sh-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 20px;
+    color: #00E5FF;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .sh-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 15px 0;
+    color: #FFFFFF;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+
+  .sh-title span {
+    /* Le dégradé qui mixe les 3 couleurs */
+    background: linear-gradient(to right, #00E5FF, #7C4DFF, #FF2A85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shineText 5s linear infinite;
+  }
+
+  .sh-roles {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    color: #E0E0E0;
+    margin-bottom: 25px;
+    min-height: 35px;
+  }
+
+  .sh-desc {
+    color: #B0B0B0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 90%;
+  }
+
+  /* --- BOUTONS MODERNES --- */
+  .sh-btn-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .sh-btn {
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-family: 'Syne', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+  }
+
+  .sh-btn-glow {
+    background: linear-gradient(90deg, #00E5FF, #7C4DFF);
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 0 10px 20px rgba(124, 77, 255, 0.3);
+  }
+
+  .sh-btn-glow:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 229, 255, 0.5);
+  }
+
+  .sh-btn-outline {
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .sh-btn-outline:hover {
+    border-color: #FF2A85;
+    background: rgba(255, 42, 133, 0.1);
+    transform: translateY(-5px);
+  }
+
+  /* --- PARTIE PHOTO INTERACTIVE 3D --- */
+  .sh-visual-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    perspective: 1000px; /* Nécessaire pour la 3D */
+  }
+
+  .sh-image-wrapper {
+    width: 380px;
+    height: 380px;
+    position: relative;
+    transition: transform 0.1s ease; /* Pour la fluidité de la souris */
+    transform-style: preserve-3d;
+  }
+
+  .sh-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #00E5FF, #7C4DFF, #FF2A85, #00E5FF);
+    z-index: -1;
+    animation: rotateBorder 4s linear infinite;
+    filter: blur(10px);
+    opacity: 0.8;
+  }
+
+  .sh-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    transform: translateZ(30px); /* Fait ressortir l'image en 3D */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+
+  /* --- ANIMATIONS CLÉS --- */
+  @keyframes floatOrbs {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -50px) scale(1.2); }
+  }
+
+  @keyframes rotateBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes shineText {
+    to { background-position: 200% center; }
+  }
+
+  /* Responsive Mobile */
+  @media (max-width: 900px) {
+    .sh-glass-panel { padding: 40px 20px; flex-direction: column-reverse; text-align: center; }
+    .sh-btn-group { justify-content: center; }
+    .sh-title { font-size: 2.8rem; }
+    .sh-image-wrapper { width: 280px; height: 280px; margin-bottom: 30px; }
+  }
+</style>
+
+<div class="sh-container">
+  
+  <!-- Les lumières de fond -->
+  <div class="sh-orb sh-orb-1"></div>
+  <div class="sh-orb sh-orb-2"></div>
+  <div class="sh-orb sh-orb-3"></div>
+
+  <!-- Le panneau central en verre dépoli -->
+  <div class="sh-glass-panel">
+    
+    <div class="sh-text-side">
+      <div class="sh-badge">Disponible pour de nouveaux défis</div>
+      <h1 class="sh-title">Amié Désiré<br><span>Wilfried GRAH</span></h1>
+      
+      <div class="sh-roles">
+        <span style="color: #FFFFFF;">Je suis</span> 
+        <span style="color: #00E5FF; font-weight: bold;" id="sh-typewriter"></span><span style="color: #FF2A85; animation: blink 1s infinite;">_</span>
+      </div>
+      
+      <p class="sh-desc">
+        Expert hybride avec plus de 6 ans d'expérience. Je fusionne la logique du <strong>développement web</strong>, la robustesse de l'<strong>infrastructure réseau</strong> et l'esthétique du <strong>design graphique</strong> pour donner vie à vos projets les plus ambitieux.
+      </p>
+      
+      <div class="sh-btn-group">
+        <a href="#portfolio" class="sh-btn sh-btn-glow">Explorer mon univers</a>
+        <a href="TON_LIEN_CV" class="sh-btn sh-btn-outline" target="_blank">Mon CV (PDF)</a>
+      </div>
+    </div>
+
+    <div class="sh-visual-side">
+      <!-- ID ajouté pour le script 3D -->
+      <div class="sh-image-wrapper" id="sh-3d-card">
+        <!-- REMPLACE PAR TA PHOTO -->
+        <img src="http://portfolio-grah.local/wp-content/uploads/2026/05/Gemini_Generated_Image_93koxl93koxl93ko-compressed.jpg" alt="Wilfried GRAH" class="sh-image">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Scripts pour les effets dynamiques -->
+<script>
+  /* 1. Animation Machine à écrire */
+  const shWords = ["Développeur Full-Stack", "Administrateur Système", "Infographiste UI/UX", "Technicien Électronique"];
+  let shIndex = 0;
+
+  function typeEffect() {
+    let word = shWords[shIndex].split("");
+    let loop = function() {
+      if (word.length > 0) {
+        document.getElementById('sh-typewriter').innerHTML += word.shift();
+      } else {
+        setTimeout(deleteEffect, 2000);
+        return false;
+      }
+      setTimeout(loop, 80);
+    };
+    loop();
+  }
+
+  function deleteEffect() {
+    let word = shWords[shIndex].split("");
+    let loop = function() {
+      if (word.length > 0) {
+        word.pop();
+        document.getElementById('sh-typewriter').innerHTML = word.join("");
+      } else {
+        shIndex = (shIndex + 1) % shWords.length;
+        typeEffect();
+        return false;
+      }
+      setTimeout(loop, 40);
+    };
+    loop();
+  }
+  setTimeout(typeEffect, 1000);
+
+  /* 2. Effet 3D Tilt au passage de la souris sur la photo */
+  const card = document.getElementById('sh-3d-card');
+  
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; 
+    const y = e.clientY - rect.top;  
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    /* Calcule l'angle d'inclinaison (max 20 degrés) */
+    const rotateX = ((y - centerY) / centerY) * -20; 
+    const rotateY = ((x - centerX) / centerX) * 20;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+  });
+
+  /* Remet la photo droite quand la souris sort */
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+  });
+</script>

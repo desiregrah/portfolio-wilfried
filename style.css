@@ -67,14 +67,34 @@ body {
     box-sizing: border-box;
 }
 
-.sh-nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 800;
+/* Le conteneur du logo */
+.sh-logo-wrapper {
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
+}
+
+/* On applique la MÊME police et le MÊME dégradé aux deux textes */
+.sh-nav-logo, .sh-nav-subtitle {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
     background: linear-gradient(to right, #00E5FF, #7C4DFF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* Ajustement de la taille du Nom */
+.sh-nav-logo {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* Ajustement de la taille du Titre pour être uniforme */
+.sh-nav-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-top: 4px;
 }
 
 .sh-nav-links {
@@ -304,4 +324,22 @@ textarea.form-control { min-height: 120px; resize: vertical; }
     .sh-btn-group { justify-content: center; }
     .sh-title { font-size: 2.8rem; }
     .sh-image-wrapper { width: 280px; height: 280px; margin-bottom: 30px; }
+	/* === RÉDUCTION DES TITRES POUR MOBILE === */
+    .sh-title { 
+        font-size: 2.2rem; /* Réduit le grand titre de l'accueil */
+        line-height: 1.2;
+    }
+    
+    .sh-roles {
+        font-size: 1.3rem; /* Réduit le texte de la machine à écrire */
+        min-height: 45px; /* Laisse de la place au cas où ça passe sur 2 lignes */
+    }
+
+    .sh-section-title {
+        font-size: 1.8rem; /* Réduit les titres comme "Mes Services" ou "Mon Parcours" */
+        margin-bottom: 40px; 
+    }
+    
+    .sh-section {
+        padding: 60px 5%; /* Réduit les gros espaces blancs en haut et en bas sur téléphone */
 }
